@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-import { Layout, Card, Row, Col } from "antd";
+import { Layout, Card, Row, Col, Input, Space } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 
+// const { Search } = Input;
 const { Content } = Layout;
 const { Meta } = Card;
 
 export default function Contents() {
   const [data, setData] = useState([]);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const loadData = async () => {
     try {
       const res = await axios.get(
-        "https://www.themealdb.com/api/json/v1/1/search.php?f=b"
+        "https://www.themealdb.com/api/json/v1/1/search.php?s"
       );
       console.log(res);
       setData(res.data.meals);
-      console.log(data);
+      console.log(data)
+      // console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -27,16 +31,46 @@ export default function Contents() {
     loadData();
   }, []);
 
+  const searchFood = async (e) => {
+    console.log(e.target.value)
+    try {
+      const datas = await axios.get(
+        "https://www.themealdb.com/api/json/v1/1/search.php?s=" + e.target.value
+      );
+      setData(datas.data.meals);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Content
         className="site-layout"
-        style={{ padding: "0 50px", marginTop: 64}}
+        style={{ padding: "0 50px", marginTop: 120 }}
       >
         <div
           className="site-layout-background"
           style={{ padding: 24, minHeight: 380 }}
         >
+          <div
+            className="container"
+            style={{
+              marginTop: "-50px",
+              marginBottom: "40px",
+            }}
+          >
+            <Space style={{ display: "flex", justifyContent: "space-between" }}>
+              <h1 style={{ fontWeight: 700 }}>Meals</h1>
+              <Input
+                size="large"
+                placeholder="Search..."
+                prefix={<SearchOutlined />}
+                style={{ width: 300 }}
+                onChange={(e) => searchFood(e)}
+              />
+            </Space>
+          </div>
           <Row justify="space-evenly" gutter={[42, 42]}>
             {data &&
               data.map((item) => {
@@ -49,6 +83,7 @@ export default function Contents() {
                           width: 240,
                         }}
                         cover={<img alt="meals" src={item.strMealThumb} />}
+                        onClick={() => navigate(`/${item.idMeal}`)}
                       >
                         <Meta
                           title={item.strMeal}
