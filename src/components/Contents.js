@@ -13,7 +13,7 @@ export default function Contents() {
   const loadData = async () => {
     try {
       const res = await axios.get(
-        "https://www.themealdb.com/api/json/v1/1/search.php?f=m"
+        "https://www.themealdb.com/api/json/v1/1/search.php?f=b"
       );
       console.log(res);
       setData(res.data.meals);
@@ -52,7 +52,7 @@ export default function Contents() {
                       >
                         <Meta
                           title={item.strMeal}
-                          description="www.instagram.com"
+                          description={item.strCategory}
                         />
                       </Card>
                     </Col>
