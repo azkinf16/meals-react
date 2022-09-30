@@ -71,8 +71,6 @@ export default function Detail() {
                   <li>
                     {meal.strMeasure5} {meal.strIngredient5}
                   </li>
-                  {/* <li>{meal.strMeasure6} {meal.strIngredient6}</li>
-                <li>{meal.strMeasure7} {meal.strIngredient7}</li> */}
                 </ul>
               </div>
               <br />
