@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { Layout, Card, Row, Col, Input, Space } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
-// const { Search } = Input;
 const { Content } = Layout;
 const { Meta } = Card;
 
@@ -18,10 +17,7 @@ export default function Contents() {
       const res = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/search.php?s"
       );
-      console.log(res);
       setData(res.data.meals);
-      console.log(data)
-      // console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +28,6 @@ export default function Contents() {
   }, []);
 
   const searchFood = async (e) => {
-    console.log(e.target.value)
     try {
       const datas = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/search.php?s=" + e.target.value
@@ -83,7 +78,7 @@ export default function Contents() {
                           width: 240,
                         }}
                         cover={<img alt="meals" src={item.strMealThumb} />}
-                        onClick={() => navigate(`/${item.idMeal}`)}
+                        onClick={() => navigate(`/Detail/${item.idMeal}`)}
                       >
                         <Meta
                           title={item.strMeal}
