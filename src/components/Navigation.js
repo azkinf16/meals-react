@@ -2,11 +2,15 @@ import React from "react";
 
 import { Layout, Menu } from "antd";
 import { Header } from "antd/lib/layout/layout";
-import { HomeOutlined, SettingOutlined, AppstoreOutlined, FireFilled } from "@ant-design/icons";
+import { HomeOutlined, AppstoreOutlined, FireFilled } from "@ant-design/icons";
+
+import { useNavigate } from "react-router-dom";
 
 import "antd/dist/antd.css";
 
 export default function Navigation() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Layout>
@@ -28,24 +32,33 @@ export default function Navigation() {
             }}
           >
             <div className="left">
-              <h1 style={{ color: "white" }}><FireFilled /> Meals</h1>
+              <h1 style={{ color: "white" }}>
+                <FireFilled />
+                &nbsp;Meals
+              </h1>
             </div>
             <Menu mode="horizontal" theme="dark">
-              <Menu.Item key="home" icon={<HomeOutlined />}>
+              <Menu.Item
+                key="home"
+                icon={<HomeOutlined />}
+                onClick={() => navigate("/")}
+              >
                 Home
               </Menu.Item>
-              <Menu.SubMenu
-                key="SubMenu"
-                title="Category"
-                icon={<SettingOutlined />}
+              <Menu.Item
+                key="two"
+                icon={<AppstoreOutlined />}
+                onClick={() => navigate(() => "/Category/Beef")}
               >
-                <Menu.Item key="two" icon={<AppstoreOutlined />}>
-                  Dessert
-                </Menu.Item>
-                <Menu.Item key="three" icon={<AppstoreOutlined />}>
-                  Beef
-                </Menu.Item>
-              </Menu.SubMenu>
+                Beef
+              </Menu.Item>
+              <Menu.Item
+                key="three"
+                icon={<AppstoreOutlined />}
+                onClick={() => navigate("/Category/Seafood")}
+              >
+                Seafood
+              </Menu.Item>
             </Menu>
           </div>
         </Header>
