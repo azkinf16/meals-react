@@ -1,11 +1,21 @@
-.ingredients {
-    display: grid;
+.info {
+  display: flex;
 }
 
-.ingredients h2 {
-    font-size: 25px;
+.info h2 {
+  font-size: 25px;
 }
 
+.info .right {
+  background-color: #e7e7e7;
+  font-size: 0.55rem;
+  margin-left: 5.5rem;
+  text-align: justify;
+  height: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
 
-
-
+.left ul li {
+    font-size: 0.7rem;
+}
