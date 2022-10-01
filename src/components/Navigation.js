@@ -48,7 +48,7 @@ export default function Navigation() {
               <Menu.Item
                 key="two"
                 icon={<AppstoreOutlined />}
-                onClick={() => navigate(() => "/Category/Beef")}
+                onClick={() => navigate("/Category/Beef")}
               >
                 Beef
               </Menu.Item>
