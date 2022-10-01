@@ -6,6 +6,7 @@ import Navigation from "./Navigation";
 
 import { Layout, Card, Row, Col, Input, Space } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
+import Foot from "./Foot";
 
 const { Content } = Layout;
 const { Meta } = Card;
@@ -84,9 +85,7 @@ export default function Contents() {
                         cover={<img alt="meals" src={item.strMealThumb} />}
                         onClick={() => navigate(`/Detail/${item.idMeal}`)}
                       >
-                        <Meta
-                          title={item.strMeal}
-                        />
+                        <Meta title={item.strMeal} />
                       </Card>
                     </Col>
                   </div>
@@ -95,6 +94,7 @@ export default function Contents() {
           </Row>
         </div>
       </Content>
+      <Foot />
     </>
   );
 }
