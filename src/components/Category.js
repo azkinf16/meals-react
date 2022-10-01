@@ -21,7 +21,6 @@ export default function Contents() {
         `https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`
       );
       setSecdata(res.data.meals);
-      console.log(secdata);
     } catch (error) {
       console.log(error);
     }
@@ -29,10 +28,9 @@ export default function Contents() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [cat]);
 
   const searchFood = async (e) => {
-    console.log(e.target.value);
     try {
       const datas = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/search.php?s=" + e.target.value
